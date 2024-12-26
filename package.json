@@ -1,0 +1,90 @@
+{
+  "name": "vscode-pnpm-outdated",
+  "displayName": "pnpm outdated",
+  "author": {
+    "name": "Michael Auerswald"
+  },
+  "publisher": "fabrikatdev",
+  "description": "Simple integration of pnpm outdated into vscode",
+  "version": "0.0.2",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:json",
+    "onLanguage:yaml"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscode-pnpm-outdated.install",
+        "title": "pnpm outdated: Run pnpm install"
+      },
+      {
+        "command": "vscode-pnpm-outdated.refreshOutdated",
+        "title": "pnpm outdated: Run pnpm outdated"
+      },
+      {
+        "command": "vscode-pnpm-outdated.enable",
+        "title": "pnpm outdated: Enable"
+      },
+      {
+        "command": "vscode-pnpm-outdated.disable",
+        "title": "pnpm outdated: Disable"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "pnpm outdated",
+      "properties": {
+        "pnpm-outdated.enabled": {
+          "type": "boolean",
+          "description": "Enable pnpm outdated code lens",
+          "default": true
+        },
+        "pnpm-outdated.showInstalledVersionLens": {
+          "type": "boolean",
+          "description": "Show installed version as lens even when there is no update available",
+          "default": false
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/semver": "^7.5.8",
+    "@types/vscode": "^1.96.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.16.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "ofetch": "^1.4.1",
+    "semver": "^7.6.3",
+    "yaml": "^2.6.1"
+  }
+}
