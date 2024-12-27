@@ -1,12 +1,16 @@
-# vscode-pnpm-outdated README
+# vscode-pnpm-outdated
 
-This is the README for your extension "vscode-pnpm-outdated". After writing up a brief description, we recommend including the following sections.
+After switching my projects to pnpm workspaces, I noticed that most extensions dealing with out of date npm package versions did not yet cover them. So, as much as an excercise to learn about vscode extensions as for providing me with the needed functionality for my projects, I created this small extension.
+
+In essence it combines `pnpm list` and `pnpm outdated` to notify the user of outdated package versions in `package.json` and `pnpm-workspace.yaml` files when using `pnpm` as their package manager. It uses lenses to display the information inline with an immediate action to update the semver version to the latest version available (as reported by `pnpm outdated`)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Check for outdated package versions
 
 For example if there is an image subfolder under your extension project workspace:
+
+### Check compliance of installed packages with version ranges
 
 \!\[feature X\]\(images/feature-x.png\)
 
@@ -14,58 +18,21 @@ For example if there is an image subfolder under your extension project workspac
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- `pnpm` needs to be installed and used as the project's package manager
+- `pnpm install` must have been executed at least once
+- for projects using pnpm workspaces, a `package.json` needs to exist alongside the `pnpm-workspace.yaml`
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- `pnpm-outdated.enabled`: Enable/disable this extension.
+- `pnpm-outdated.showInstalledVersionLens`: Show a lens with the current version information even when there is no update available
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- early alpha version
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release

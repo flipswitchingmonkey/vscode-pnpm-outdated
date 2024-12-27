@@ -70,7 +70,7 @@ class PnpmOutdatedCodeLensProvider implements vscode.CodeLensProvider {
         }
       }
 
-      console.debug(`dependencies: ${dependencies.length}`)
+      // console.debug(`dependencies: ${dependencies.length}`)
 
       if (dependencies.length === 0) return lenses
 
